@@ -1,0 +1,60 @@
+
+	RunRadis: Run RadiScript screens
+	Copyright (C) 2009, 2010, 2011  James Hahn
+
+	This file is part of RunRadis.
+
+
+This was developed on Windows, though it should compile
+and run on linux just as well.
+
+
+REQUIRED COMPONENTS ON WINDOWS
+- caml from http://caml.inria.fr/ (developed on v3.11)
+- flexdll from http://alain.frisch.fr/flexdll.html
+- bzip2 source code from http://www.bzip.org/ (if building the BinaryDB flavor)
+- MS VC++ 2008 from http://www.microsoft.com/express/vc/ (2005 works, too)
+- MS Platform SDK 2003 R2 from http://msdn.microsoft.com/en-us/windows/bb980924.aspx
+	(use whatever SDK version is appropriate for your machine)
+
+In the following:
+	- "<toolset>" refers to the directory in which the toolset has been unzipped
+	- "<sdk>" refers to the directory in which the MS Platform SDK has been installed
+
+COMPONENT LOCATIONS
+- caml native-code compiler requires flexdll.
+  After installing caml, copy the following into the caml "bin" directory
+  from the flexdll zip file:
+	flexdll_inter_msvc.obj, flexdll_msvc.obj, flexlink.exe, default.manifest
+
+- copy *.h & *.c from the bzip2 source code distribution into
+  the <toolset>/camlbz2 subdirectory
+
+- caml compiler doesn't like spaces in directory names, thus a number of
+  files need to be copied or relocated to different directories.
+	- mkdir <toolset>\camlbz2\include
+	- copy *.h into <toolset>\camlbz2\include from <sdk>\include
+
+	- mkdir <toolset>\libs
+	- copy the following files into <toolset>\libs from <sdk>\lib:
+		advapi32.lib, ws2_32.lib, uuid.lib
+
+ENVIRONMENT SETUP
+cd <toolset>
+setenv.bat
+
+COMPILE COMPRESSION LIBRARY (only needed for BinaryDB flavor)
+cd <toolset>\camlbz2
+mkdir Release
+compile.bat
+del include (these files are no longer needed)
+
+COMPILE BINARYDB FLAVOR
+cd <toolset>
+mkdir Release
+compile.bat
+
+COMPILE DIRECT FLAVOR
+cd <toolset>\dbfdirect
+mkdir Release
+compile.bat

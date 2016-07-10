@@ -1,0 +1,35 @@
+1.2b
+Apply cusip work-around, using ticker, for 07/29/2011 only.
+
+1.2
+Match records from one period to the next by cusip and then by tkr
+(works around 07/29/2011 SI-Pro data wherein cusip numbers were all changed)
+
+1.1
+Add SUM and COUNT aggregate functions
+Remove duplicates from Deblank statements (optimization)
+Use functors in screen compiler
+Reverse argument order in ||, &&, min, max
+Allocate decompression buffer once (optimization)
+Avoid currying read_string and write_string (optimization)
+Fix bug where 'Set' constants were added to 'Create' table
+
+1.0
+
+0.92
+Provide line numbers at which syntax errors occur in screen definitions
+Don't optimize away variables containing constants after SOS operations
+Treat erroneous dates as 0
+Let variable [SI Weekly data date] represent same value as NOW()
+
+0.91
+Don't force rebalance at end of year (and don't print end of year date
+	unless it lies at the end of a period)
+Use CUSIP instead of TICKER to match data between periods
+Fix file-create mode so that it works correctly on unix
+Allow DBF file name to work on unix - may start with an upper or lower case
+	letter
+Added "fields" command to list fields in the DB
+
+0.90
+Fix GSD computation, particularly for blends
