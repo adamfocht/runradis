@@ -2,3 +2,4 @@
 *.cmx
 *.o
 Release
+.vscode
